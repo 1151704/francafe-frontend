@@ -1,8 +1,9 @@
+import { ModalUsuarioRegistrarComponent } from './../modals/modal-usuario-registrar/modal-usuario-registrar.component';
 import { Usuario } from './../../models/usuario.model';
 import { Router } from '@angular/router';
 import { ApiService } from './../../core/api.service';
 import { TokenStorageService } from './../../auth/token-storage.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-main-usuarios',
@@ -14,6 +15,8 @@ export class MainUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
 
   info: Usuario;
+    
+  @ViewChild("modalUsuarioRegistrar", { static: true }) modalUsuarioRegistrar: ModalUsuarioRegistrarComponent;
 
   constructor(private token: TokenStorageService, private router: Router, private apiService: ApiService) { }
 
@@ -33,19 +36,26 @@ export class MainUsuariosComponent implements OnInit {
   editUsuario(usuario: Usuario) {
 
     this.apiService.usuariosService.saveEstado(!usuario.enable, usuario.identificacion)
-    .subscribe(data => {
-      this.ngOnInit();
-    }, error => {
-      console.error(error)
-      this.apiService.notifService.error('Error', error);
-    })
+      .subscribe(data => {
+        this.ngOnInit();
+      }, error => {
+        console.error(error)
+        this.apiService.notifService.error('Error', error);
+      })
 
   }
 
-  adminUsuario(usuario: Usuario) {
-    localStorage.removeItem("editUsuarioId");
-    localStorage.setItem("editUsuarioId", usuario.identificacion);
-    this.router.navigate(['/main/usuario-edit']);
+  updateUsuario(usuario: Usuario) {
+    let existe = false;
+    this.usuarios.forEach(element => {
+      if (element.identificacion == usuario.identificacion) {
+        element = usuario;
+        existe = true;
+      }
+    });
+    if (!existe) {
+      this.usuarios.push(usuario)
+    }
   }
 
   public isValido(rol: string) {

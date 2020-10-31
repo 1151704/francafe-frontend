@@ -18,6 +18,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { MainInicioComponent } from './components/main-inicio/main-inicio.component';
 import { MainUsuariosComponent } from './components/main-usuarios/main-usuarios.component';
 import { MainPerfilComponent } from './components/main-perfil/main-perfil.component';
+import { ModalUsuarioRegistrarComponent } from './components/modals/modal-usuario-registrar/modal-usuario-registrar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MainPerfilComponent } from './components/main-perfil/main-perfil.compon
     MainMenuComponent,
     MainInicioComponent,
     MainUsuariosComponent,
-    MainPerfilComponent
+    MainPerfilComponent,
+    ModalUsuarioRegistrarComponent,
   ],
   imports: [
     BrowserModule,

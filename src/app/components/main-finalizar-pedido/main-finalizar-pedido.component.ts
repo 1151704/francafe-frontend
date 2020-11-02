@@ -1,6 +1,6 @@
+import { ClienteApi } from './../../models/api/cliente-api';
 import { ApiService } from './../../core/api.service';
-import { DetallePedido } from './../../models/api/detalle-pedido.api';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-main-finalizar-pedido',
@@ -23,6 +23,8 @@ export class MainFinalizarPedidoComponent implements OnInit {
   apellidos = ''
   telefono = ''
   identificacion = ''
+
+  @Output() public finalizarCompra = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
 
@@ -70,6 +72,33 @@ export class MainFinalizarPedidoComponent implements OnInit {
         }
       }
     )
+  }
+
+  enviarPedido() {
+
+    let mensaje = null;
+
+    if (this.identificacion.length == 0 || 
+      this.nombres.length == 0 || 
+      this.apellidos.length == 0) {
+      mensaje = 'Debe ingresar los datos del cliente'
+    }
+
+    if (mensaje == null) {
+
+      let cliente = new ClienteApi();
+      cliente.identificacion = this.identificacion
+      cliente.nombres = this.nombres
+      cliente.apellidos = this.apellidos 
+      cliente.idSexo = this.sexo.id
+      cliente.idTipo = this.tipoId.id
+      cliente.telefono = this.telefono
+
+      this.finalizarCompra.emit({cliente, 'idFormaPago': this.formaPago.id})
+    } else {
+      alert(mensaje)
+    }
+
   }
 
 }

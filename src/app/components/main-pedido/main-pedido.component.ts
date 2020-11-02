@@ -1,5 +1,5 @@
-import { MainFinalizarPedidoComponent } from './../main-finalizar-pedido/main-finalizar-pedido.component';
-import { DetallePedido } from './../../models/api/detalle-pedido.api';
+import { PedidoApi } from './../../models/api/pedido-api';
+import { DetallePedidoApi } from '../../models/api/detalle-pedido-api';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -9,18 +9,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class MainPedidoComponent implements OnInit {
 
-  detalles: DetallePedido[] = []
+  detalles: DetallePedidoApi[] = []
 
   valorNeto = 0;
   valorIva = 0;
-  valorTotal = 0;  
-    
-  @ViewChild("finalizarPedido", { static: true }) finalizarPedido: MainFinalizarPedidoComponent;
+  valorTotal = 0;
 
   constructor() {
-    this.finalizarPedido
-
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -38,7 +34,7 @@ export class MainPedidoComponent implements OnInit {
 
     } else {
 
-      let detalle = new DetallePedido();
+      let detalle = new DetallePedidoApi();
 
       detalle.producto = producto;
       detalle.cantidad = cantidad;
@@ -64,6 +60,25 @@ export class MainPedidoComponent implements OnInit {
     }).indexOf(detalle.producto.id);
 
     this.detalles.splice(indexDetalle, 1)
+
+  }
+
+  finalizarCompra({cliente, idFormaPago}) {
+
+    if (this.detalles.length == 0) {
+      alert('No puede finalizar la compra sin ningun producto agregado')
+    }
+
+    let pedido = new PedidoApi();
+
+    pedido.detalles = this.detalles
+    pedido.cliente = cliente
+    pedido.valorIva = this.valorIva
+    pedido.valorTotal = this.valorTotal
+    pedido.valorNeto = this.valorNeto
+    pedido.idFormaPago = idFormaPago
+
+    console.log(pedido)
 
   }
 

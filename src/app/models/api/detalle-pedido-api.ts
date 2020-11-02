@@ -1,4 +1,4 @@
-export class DetallePedido {    
+export class DetallePedidoApi {    
     producto: any;
     cantidad: number;
     valorTotal: number;

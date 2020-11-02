@@ -1,3 +1,4 @@
+import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
 import { MainPerfilComponent } from './components/main-perfil/main-perfil.component';
 import { MainUsuariosComponent } from './components/main-usuarios/main-usuarios.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
     ]
   },
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: 'ejemplo', component: EjemploComponent },
   {
     path: 'main', component: MainComponent, children: [
       { path: '', component: MainInicioComponent },

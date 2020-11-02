@@ -19,6 +19,9 @@ import { MainInicioComponent } from './components/main-inicio/main-inicio.compon
 import { MainUsuariosComponent } from './components/main-usuarios/main-usuarios.component';
 import { MainPerfilComponent } from './components/main-perfil/main-perfil.component';
 import { ModalUsuarioRegistrarComponent } from './components/modals/modal-usuario-registrar/modal-usuario-registrar.component';
+import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
+import { MainBuscarProductoComponent } from './components/main-buscar-producto/main-buscar-producto.component';
+import { MainFinalizarPedidoComponent } from './components/main-finalizar-pedido/main-finalizar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { ModalUsuarioRegistrarComponent } from './components/modals/modal-usuari
     MainUsuariosComponent,
     MainPerfilComponent,
     ModalUsuarioRegistrarComponent,
+    MainPedidoComponent,
+    MainBuscarProductoComponent,
+    MainFinalizarPedidoComponent,
   ],
   imports: [
     BrowserModule,

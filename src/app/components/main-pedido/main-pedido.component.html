@@ -1,0 +1,55 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <app-main-buscar-producto (nuevoProducto)="agregarProducto($event)"></app-main-buscar-producto>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive bg-white tableFixHead">
+                <table class="table table-bordered table-sm" style="margin-bottom: 0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Categoria</th>
+                            <th>Producto</th>
+                            <th>Precio unitario</th>
+                            <th>Iva</th>
+                            <th>Cantidad</th>
+                            <th>Valor Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="detalles.length == 0">
+                            <td align="center" colspan="7">Sin detalles</td>
+                        </tr>
+                        <tr *ngFor="let item of detalles">
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" (click)="eliminarDetalle(item)" class="btn btn-sm btn-danger" title="Eliminar"><i class="fas fa-trash"></i></button> {{item.producto.codigo}}
+                                </div>
+                            </td>
+                            <td>{{item.producto.categoria.nombre}}</td>
+                            <td>{{item.producto.nombre}}</td>
+                            <td>{{item.producto.precio | currency }}</td>
+                            <td>{{item.producto.valorIva | currency }}</td>
+                            <td align="center">{{item.cantidad}}</td>
+                            <td align="right">{{item.valorTotal | currency }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="6" style="border-bottom: none; border-left: none;">&nbsp;</th>
+                            <th align="right">
+                                <p class="d-flex justify-content-between"><span>Neto </span>{{valorNeto | currency }}</p>
+                                <p class="d-flex justify-content-between"><span>IVA </span>{{valorIva | currency }}</p>
+                                <p class="d-flex justify-content-between"><span>Total </span>{{valorTotal | currency }}</p>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <app-main-finalizar-pedido #finalizarPedido></app-main-finalizar-pedido>
+
+</div>

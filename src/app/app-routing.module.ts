@@ -1,3 +1,4 @@
+import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
 import { MainPerfilComponent } from './components/main-perfil/main-perfil.component';
 import { MainUsuariosComponent } from './components/main-usuarios/main-usuarios.component';
 import { MainInicioComponent } from './components/main-inicio/main-inicio.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: '', component: MainInicioComponent },
       { path: 'usuarios', component: MainUsuariosComponent },
       { path: 'perfil', component: MainPerfilComponent },
+      { path: 'pedido', component: MainPedidoComponent },
     ]
   }
 ];

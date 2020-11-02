@@ -1,3 +1,4 @@
+import { ApiService } from './../../core/api.service';
 import { PedidoApi } from './../../models/api/pedido-api';
 import { DetallePedidoApi } from '../../models/api/detalle-pedido-api';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -15,7 +16,7 @@ export class MainPedidoComponent implements OnInit {
   valorIva = 0;
   valorTotal = 0;
 
-  constructor() {
+  constructor(private apiService: ApiService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class MainPedidoComponent implements OnInit {
   agregarProducto({ producto, cantidad }) {
 
     var indexDetalle = this.detalles.map(e => {
-      return e.producto.id
+      return e.idProducto
     }).indexOf(producto.id);
 
     if (indexDetalle != -1) {
@@ -39,6 +40,7 @@ export class MainPedidoComponent implements OnInit {
       detalle.producto = producto;
       detalle.cantidad = cantidad;
       detalle.valorTotal = producto.precio * cantidad
+      detalle.idProducto = producto.id
 
       this.detalles.push(detalle)
     }
@@ -79,6 +81,15 @@ export class MainPedidoComponent implements OnInit {
     pedido.idFormaPago = idFormaPago
 
     console.log(pedido)
+
+    this.apiService.facturacionService.guardarFactura(pedido).subscribe(
+      data => {
+        console.log(data)
+      }, 
+      error => {
+        console.log(error)
+      }
+    )
 
   }
 

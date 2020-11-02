@@ -22,7 +22,6 @@ import { ModalUsuarioRegistrarComponent } from './components/modals/modal-usuari
 import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
 import { MainBuscarProductoComponent } from './components/main-buscar-producto/main-buscar-producto.component';
 import { MainFinalizarPedidoComponent } from './components/main-finalizar-pedido/main-finalizar-pedido.component';
-import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { EjemploComponent } from './components/ejemplo/ejemplo.component';
     MainPedidoComponent,
     MainBuscarProductoComponent,
     MainFinalizarPedidoComponent,
-    EjemploComponent,
   ],
   imports: [
     BrowserModule,

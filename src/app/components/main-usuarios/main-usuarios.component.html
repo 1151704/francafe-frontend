@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Usuarios
+        </div>
+        <div class="card-body">
+
+            <app-modal-usuario-registrar (updateUsuario)="updateUsuario($event)" #modalUsuarioRegistrar></app-modal-usuario-registrar>
+
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalUsuarioRegistrar" title="Registrar">
+                <i class="fa fa-plus"></i> Registrar
+            </button>
+
+            <div class="table-responsive">
+                <table class=" mt-2 table table-striped table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Identificación</th>
+                            <th>Rol</th>
+                            <th>Empresa</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="usuarios.length == 0">
+                            <td colspan="9" align="center">No hay registros</td>
+                        </tr>
+                        <tr *ngFor="let usuario of usuarios; let i = index" [ngClass]="{'tr-color-0': !usuario.enable, 'tr-color-1': usuario.enable}">
+                            <td>{{usuario.username}}</td>
+                            <td>{{usuario.email}}</td>
+                            <td>{{usuario.nombres}}</td>
+                            <td>{{usuario.apellidos}}</td>
+                            <td>
+                                {{(usuario.tipoIdentificacion ? usuario.tipoIdentificacion.tipo +' ': '')+ usuario.identificacion}}
+                            </td>
+                            <td>{{usuario.rol ? usuario.rol.descripcion: 'Sin rol'}}</td>
+                            <td>{{usuario.empresa ? '('+usuario.empresa.nit+') ' +usuario.empresa.nombre: 'Sin proveedor'}}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" (click)="editUsuario(usuario)">{{usuario.enable?'Desactivar': 'Activar'}}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+    <!-- DataTables Example -->
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Mi perfil
+        </div>
+        <div class="card-body">
+            <form [formGroup]="formPassword" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputNombres">Nombres</label>
+                                <input type="text" id="inputNombres" class="form-control" placeholder="Nombres" readonly required="required" autofocus="autofocus" value="{{usuario.nombres | uppercase }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputApellidos">Apellidos</label>
+                                <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" readonly required="required" value="{{usuario.apellidos | uppercase }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email" readonly required="required" value="{{usuario.email | uppercase }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputIdentificacion">Identificación</label>
+                                <input type="text" id="inputIdentificacion" class="form-control" placeholder="Identificación" readonly disabled value="{{(usuario.tipoId ? usuario.tipoId.tipo+' ':'') +usuario.identificacion }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputProveedor">Empresa</label>
+                                <input type="text" id="inputProveedor" class="form-control" placeholder="Proveedor" readonly disabled value="{{(usuario.empresa ? usuario.empresa.nombre : 'Sin empresa') | uppercase }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <label for="inputRol">Rol</label>
+                                <input type="text" id="inputRol" class="form-control" placeholder="Rol" readonly disabled value="{{(usuario.rol ? usuario.rol.descripcion : '') | uppercase}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <label for="inputPass">Contraseña nueva</label>
+                                <input type="password" id="inputPass" minlength="5" class="form-control" formControlName="password" placeholder="Contraseña" value="">
+                                <small class="form-text text-muted" *ngIf="formPassword.hasError('required', 'password')">Ingrese tu nueva contraseña</small>
+                                <small class="form-text text-muted" *ngIf="formPassword.hasError('minlength', 'password')">Minimo de 5 caracteres</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <label for="inputPassConfir">Confirmar contraseña</label>
+                                <input type="password" id="inputPassConfir" class="form-control" formControlName="confirmPassword" placeholder="Confirmar" value="">
+                                <small class="form-text text-muted" *ngIf="formPassword.hasError('notSame')">Contraseña no coinciden</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-success" type="submit" [disabled]="!formPassword.valid">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

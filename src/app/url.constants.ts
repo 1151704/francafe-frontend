@@ -1,6 +1,6 @@
 const relacionUrls = [
    {client: 'http://localhost:4200', backend: 'http://localhost:8080/'},
-   {client: 'https://ayd-pqrs-ufps.herokuapp.com', backend: 'https://ayd-pqrs-ufps-back.herokuapp.com'},
+   {client: 'https://ayd-pqrs-ufps.herokuapp.com', backend: 'https://ayd-pqrs-ufps-back.herokuapp.com/'},
 ]
 
 const getURlBackend = () => {

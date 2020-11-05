@@ -1,7 +1,9 @@
+import { MainFinalizarPedidoComponent } from './../main-finalizar-pedido/main-finalizar-pedido.component';
 import { ApiService } from './../../core/api.service';
 import { PedidoApi } from './../../models/api/pedido-api';
 import { DetallePedidoApi } from '../../models/api/detalle-pedido-api';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main-pedido',
@@ -16,10 +18,19 @@ export class MainPedidoComponent implements OnInit {
   valorIva = 0;
   valorTotal = 0;
 
+  @ViewChild("mainFinalizarPedido", { static: true })
+  mainFinalizarPedido: MainFinalizarPedidoComponent;
+
   constructor(private apiService: ApiService) {
   }
 
   ngOnInit(): void {
+    this.detalles= []
+
+    this.valorNeto = 0;
+    this.valorIva = 0;
+    this.valorTotal = 0;
+    this.mainFinalizarPedido.ngOnInit()
   }
 
   agregarProducto({ producto, cantidad }) {
@@ -68,7 +79,7 @@ export class MainPedidoComponent implements OnInit {
   finalizarCompra({cliente, idFormaPago}) {
 
     if (this.detalles.length == 0) {
-      alert('No puede finalizar la compra sin ningun producto agregado')
+      alert('No puede finalizar la compra sin ningún producto agregado')
     }
 
     let pedido = new PedidoApi();
@@ -80,14 +91,14 @@ export class MainPedidoComponent implements OnInit {
     pedido.valorNeto = this.valorNeto
     pedido.idFormaPago = idFormaPago
 
-    console.log(pedido)
-
     this.apiService.facturacionService.guardarFactura(pedido).subscribe(
       data => {
-        console.log(data)
+        Swal.fire('Factura realizada', `La factura ha sido registrada con el número ${data.codigo}`, 'success');
+        this.ngOnInit()
       }, 
       error => {
-        console.log(error)
+        this.apiService.notifService.error("Error", error);
+        console.error(error);
       }
     )
 

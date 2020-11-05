@@ -9,8 +9,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class MainFinalizarPedidoComponent implements OnInit {
 
-  cliente: any = null
-
   tiposId: any[] = []
   sexos: any[] = []
   formasPago: any[] = []
@@ -47,13 +45,17 @@ export class MainFinalizarPedidoComponent implements OnInit {
       this.formasPago = datos
       this.formaPago = this.formasPago[0]
     })
+
+    this.nombres = ''
+    this.apellidos = ''
+    this.telefono = ''
+    this.identificacion = ''
   }
 
   busquedaCliente() {
     this.apiService.datosService.buscarCliente(this.identificacion).subscribe(
       data => {
         if (data && data.id) {
-          this.cliente = data
 
           this.nombres = data.nombres
           this.apellidos = data.apellidos
@@ -78,23 +80,22 @@ export class MainFinalizarPedidoComponent implements OnInit {
 
     let mensaje = null;
 
-    if (this.identificacion.length == 0 || 
-      this.nombres.length == 0 || 
+    if (this.identificacion.length == 0 ||
+      this.nombres.length == 0 ||
       this.apellidos.length == 0) {
       mensaje = 'Debe ingresar los datos del cliente'
     }
 
     if (mensaje == null) {
-
       let cliente = new ClienteApi();
       cliente.identificacion = this.identificacion
       cliente.nombres = this.nombres
-      cliente.apellidos = this.apellidos 
+      cliente.apellidos = this.apellidos
       cliente.idSexo = this.sexo.id
       cliente.idTipo = this.tipoId.id
       cliente.telefono = this.telefono
 
-      this.finalizarCompra.emit({cliente, 'idFormaPago': this.formaPago.id})
+      this.finalizarCompra.emit({ cliente, 'idFormaPago': this.formaPago.id })
     } else {
       alert(mensaje)
     }

@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="d-block">
             <div class="row">
-                <div class="col-2">
+                <div class="col-12 col-sm-6 col-md-2">
                     <div class="form-group">
                         <label for="">Categoria</label>
                         <select class="form-control" [(ngModel)]="categoria">
@@ -14,18 +14,18 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-sm-6 col-md-3">
                     <div class="form-group">
-                        <label for="">Ingrese el código o nombre del producto</label>
+                        <label for="" tabindex="0" title="Ingrese el nombre o código del producto y dar enter para buscar.">Producto <i class="fas fa-info-circle"></i></label>
                         <input class="form-control" type="text" [(ngModel)]="busqueda" (keyup.enter)="busquedaProducto($event)">
                     </div>
                 </div>
-                <div class="col-7">
-                    <div class="table-responsive" *ngIf="productos && productos.length > 0">
-                        <div class="form-group col-5 mb-2">
-                            <label for="">Cantidad</label>
-                            <input class="form-control" min="1" step="1" type="number" [(ngModel)]="cantidad">
-                        </div>
+                <div class="col-12 col-sm-12 col-md-7" *ngIf="productos && productos.length > 0">
+                    <div class="form-group col-8 col-md-5 mb-2">
+                        <label for="">Cantidad</label>
+                        <input class="form-control" min="1" step="1" type="number" [(ngModel)]="cantidad">
+                    </div>
+                    <div class="table-responsive">
                         <table class="table table-bordered col-12 table-sm">
                             <thead>
                                 <tr>
@@ -40,7 +40,7 @@
                             <tbody>
                                 <tr *ngFor="let producto of productos">
                                     <td align="center">
-                                        <button class="btn btn-circle btn-sm" (click)="seleccionar(producto)" type="button" title="Seleccionar"><i class="fas fa-check"></i></button>
+                                        <button class="btn btn-outline-secondary btn-sm" (click)="seleccionar(producto)" type="button" title="Seleccionar"><i class="fas fa-check"></i></button>
                                     </td>
                                     <td>{{producto.codigo}}</td>
                                     <td>{{producto.categoria.nombre}}</td>

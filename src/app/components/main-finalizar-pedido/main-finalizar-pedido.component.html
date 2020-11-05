@@ -3,18 +3,15 @@
         <div class="d-flex justify-content-between align-items-center">
 
             <h6 class="m-0 font-weight-bold text-primary">Cliente</h6>
-            <button type="button" class="btn btn-success btn-icon-split btn-lg " (click)="enviarPedido()">
-                <span class="icon text-white-50 ">
-                    <i class="fas fa-shopping-basket "></i>
-                </span>
-                <span class="text ">Finalizar compra</span>
+            <button type="button" class="btn btn-success btn-icon-split" (click)="enviarPedido()">
+                <span class="text ">Finalizar</span>
             </button>
         </div>
     </div>
     <div class="card-body ">
         <div class="d-block ">
             <div class="row ">
-                <div class="col-3 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Tipo documento</label>
                         <select class="form-control " [(ngModel)]="tipoId ">
@@ -22,31 +19,31 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-md-4">
                     <div class="form-group ">
                         <label for=" ">Identificación</label>
                         <input class="form-control " type="text " [(ngModel)]="identificacion " (keyup.enter)="busquedaCliente()">
                     </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Nombres</label>
                         <input class="form-control " type="text " [(ngModel)]="nombres ">
                     </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Apellidos</label>
                         <input class="form-control " type="text " [(ngModel)]="apellidos ">
                     </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Teléfono</label>
                         <input class="form-control " type="text " [(ngModel)]="telefono ">
                     </div>
                 </div>
-                <div class="col-2 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Sexo</label>
                         <select class="form-control " [(ngModel)]="sexo ">
@@ -54,7 +51,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-2 ">
+                <div class="col-md-4 ">
                     <div class="form-group ">
                         <label for=" ">Forma de pago</label>
                         <select class="form-control " [(ngModel)]="formaPago ">

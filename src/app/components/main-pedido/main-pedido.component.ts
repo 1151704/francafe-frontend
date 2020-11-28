@@ -18,6 +18,8 @@ export class MainPedidoComponent implements OnInit {
   valorIva = 0;
   valorTotal = 0;
 
+  factura = null
+
   @ViewChild("mainFinalizarPedido", { static: true })
   mainFinalizarPedido: MainFinalizarPedidoComponent;
 
@@ -25,7 +27,7 @@ export class MainPedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.detalles= []
+    this.detalles = []
 
     this.valorNeto = 0;
     this.valorIva = 0;
@@ -76,7 +78,7 @@ export class MainPedidoComponent implements OnInit {
 
   }
 
-  finalizarCompra({cliente, idFormaPago}) {
+  finalizarCompra({ cliente, idFormaPago }) {
 
     if (this.detalles.length == 0) {
       alert('No puede finalizar la compra sin ningún producto agregado')
@@ -90,18 +92,60 @@ export class MainPedidoComponent implements OnInit {
     pedido.valorTotal = this.valorTotal
     pedido.valorNeto = this.valorNeto
     pedido.idFormaPago = idFormaPago
-
+    Swal.fire({
+      title: "Procesando compra",
+      allowOutsideClick: false,
+      onBeforeOpen: () => Swal.showLoading()
+    });
     this.apiService.facturacionService.guardarFactura(pedido).subscribe(
       data => {
-        Swal.fire('Factura realizada', `La factura ha sido registrada con el número ${data.codigo}`, 'success');
+        this.factura = data
         this.ngOnInit()
-      }, 
+        Swal.close();
+        Swal.fire({
+          title: 'Factura realizada',
+          text: `La factura ha sido registrada con el número ${data.codigo}`,
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Pdf Factura',
+          cancelButtonText: 'Cerrar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.pdfFactura()
+          }
+        })
+      },
       error => {
         this.apiService.notifService.error("Error", error);
         console.error(error);
       }
     )
 
+  }
+
+  pdfFactura() {
+    Swal.fire({
+      title: "Descargando factura",
+      allowOutsideClick: false,
+      onBeforeOpen: () => Swal.showLoading()
+    });
+    this.apiService.facturacionService.pdfFactura(this.factura.id).subscribe(
+      response => {
+        this.apiService.utilService.downloadFile(
+          response,
+          "Factura " + this.factura.codigo,
+          "pdf"
+        );
+        Swal.close();
+      },
+      error => {
+        console.log(error);
+        this.apiService.notifService.error("Error", error);
+        Swal.close();
+      }
+    );
   }
 
 }

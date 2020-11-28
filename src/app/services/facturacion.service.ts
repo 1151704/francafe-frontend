@@ -16,4 +16,8 @@ export class FacturacionService {
     return this.http.post<any>(`${this.baseUrl}`, pedido)
   }
 
+  public pdfFactura(id: number) {
+    return this.http.get(`${this.baseUrl}${id}?format=pdf`, { responseType: "blob" });
+  }
+
 }

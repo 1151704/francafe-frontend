@@ -1,3 +1,5 @@
+import { MainReportesComponent } from './components/main-reportes/main-reportes.component';
+import { MainProductosComponent } from './components/main-productos/main-productos.component';
 import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
 import { MainPerfilComponent } from './components/main-perfil/main-perfil.component';
 import { MainUsuariosComponent } from './components/main-usuarios/main-usuarios.component';
@@ -20,8 +22,10 @@ const routes: Routes = [
     path: 'main', component: MainComponent, children: [
       { path: '', component: MainInicioComponent },
       { path: 'usuarios', component: MainUsuariosComponent },
+      { path: 'productos', component: MainProductosComponent },
       { path: 'perfil', component: MainPerfilComponent },
       { path: 'pedido', component: MainPedidoComponent },
+      { path: 'reportes', component:  MainReportesComponent},
     ]
   }
 ];

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Productos
+        </div>
+        <div class="card-body">
+
+            <app-modal-producto-registrar (updateProducto)="updateProducto($event)" #modalProductoRegistrar></app-modal-producto-registrar>
+
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalProductoRegistrar" title="Registrar">
+                <i class="fa fa-plus"></i> Registrar
+            </button>
+            <button type="button" class="btn btn-info " style="display: none;" data-toggle="modal" data-target="#modalProductoRegistrar" #showModalProducto></button>
+
+            <div class="table-responsive">
+                <table class=" mt-2 table table-striped table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Valor unitario</th>
+                            <th>Valor IVA</th>
+                            <th>Categoria</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="productos.length == 0">
+                            <td colspan="9" align="center">No hay registros</td>
+                        </tr>
+                        <tr *ngFor="let usuario of productos; let i = index" [ngClass]="{'tr-color-0': !usuario.enable, 'tr-color-1': usuario.enable}">
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.codigo}}</td>
+                            <td>{{usuario.precio}}</td>
+                            <td>{{usuario.valorIva}}</td>
+                            <td>{{usuario.categoria ? usuario.categoria.nombre: 'Sin categoria'}}</td>
+                            <td>
+                                <button class="btn btn-info btn-sm m-1" (click)="modificarProducto(usuario)">Editar</button>
+                                <button class="btn btn-warning btn-sm m-1" (click)="editProducto(usuario)">{{usuario.enable?'Desactivar': 'Activar'}}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

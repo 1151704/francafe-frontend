@@ -22,6 +22,10 @@ import { ModalUsuarioRegistrarComponent } from './components/modals/modal-usuari
 import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
 import { MainBuscarProductoComponent } from './components/main-buscar-producto/main-buscar-producto.component';
 import { MainFinalizarPedidoComponent } from './components/main-finalizar-pedido/main-finalizar-pedido.component';
+import { MainProductosComponent } from './components/main-productos/main-productos.component';
+import { MainReportesComponent } from './components/main-reportes/main-reportes.component';
+import { ModalProductoRegistrarComponent } from './components/modals/modal-producto-registrar/modal-producto-registrar.component';
+import { NotificationListComponent } from './components/notification-list/notification-list.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +43,13 @@ import { MainFinalizarPedidoComponent } from './components/main-finalizar-pedido
     MainPedidoComponent,
     MainBuscarProductoComponent,
     MainFinalizarPedidoComponent,
+    MainProductosComponent,
+    MainReportesComponent,
+    ModalProductoRegistrarComponent,
+    NotificationListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AppRoutingModule,
     FormsModule,
     CommonModule,

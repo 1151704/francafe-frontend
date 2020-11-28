@@ -36,7 +36,11 @@ export class DatosService {
   }
 
   public getProductos(busqueda: string, idCategoria: number) {
-    return this.http.get<any[]>(`${this.baseUrl}productos/${busqueda}/${idCategoria ? idCategoria : '0'}`)
+    return this.http.get<any[]>(`${this.baseUrl}productos/${busqueda}/${idCategoria ? idCategoria : 0}`)
+  }
+  
+  public getProductosCategoria(idCategoria: null) {
+    return this.http.get<any[]>(`${this.baseUrl}productos/${idCategoria ? idCategoria: 0}`)
   }
 
 }

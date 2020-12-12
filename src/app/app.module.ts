@@ -26,6 +26,9 @@ import { MainProductosComponent } from './components/main-productos/main-product
 import { MainReportesComponent } from './components/main-reportes/main-reportes.component';
 import { ModalProductoRegistrarComponent } from './components/modals/modal-producto-registrar/modal-producto-registrar.component';
 import { NotificationListComponent } from './components/notification-list/notification-list.component';
+import { MainInsumosComponent } from './components/main-insumos/main-insumos.component';
+import { ModalInsumosRegistrarComponent } from './components/modals/modal-insumos-registrar/modal-insumos-registrar.component';
+import { ModalCarguesInsumosComponent } from './components/modals/modal-cargues-insumos/modal-cargues-insumos.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { NotificationListComponent } from './components/notification-list/notifi
     MainReportesComponent,
     ModalProductoRegistrarComponent,
     NotificationListComponent,
+    MainInsumosComponent,
+    ModalInsumosRegistrarComponent,
+    ModalCarguesInsumosComponent,
   ],
   imports: [
     BrowserModule,

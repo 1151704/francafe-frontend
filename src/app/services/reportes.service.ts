@@ -14,4 +14,8 @@ export class ReportesService {
   public consolidadoFacturas(fechaInicio: string, fechaFinal: string) {
     return this.http.get(`${this.baseUrl}contabilidad/${fechaInicio}/${fechaFinal}?format=pdf`, { responseType: "blob" });
   }
+  
+  public consolidadoEgresos(fechaInicio: string, fechaFinal: string) {
+    return this.http.get(`${this.baseUrl}egresos/${fechaInicio}/${fechaFinal}?format=pdf`, { responseType: "blob" });
+  }
 }

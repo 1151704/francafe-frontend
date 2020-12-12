@@ -1,3 +1,4 @@
+import { InsumosService } from './../services/insumos.service';
 import { ReportesService } from './../services/reportes.service';
 import { ProductoService } from './../services/producto.service';
 import { FacturacionService } from './../services/facturacion.service';
@@ -19,6 +20,7 @@ export class ApiService {
   facturacionService: FacturacionService;
   productoService: ProductoService;
   reportesService: ReportesService;
+  insumosService: InsumosService;
 
   constructor(private http: HttpClient, public notifService: NotificacionService, public utilService: UtilsService) {
 
@@ -27,6 +29,7 @@ export class ApiService {
     this.facturacionService = new FacturacionService(http)
     this.productoService = new ProductoService(http)
     this.reportesService = new ReportesService(http)
+    this.insumosService = new InsumosService(http)
 
   }
 

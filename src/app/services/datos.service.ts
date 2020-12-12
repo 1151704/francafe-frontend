@@ -27,6 +27,14 @@ export class DatosService {
     return this.http.get<any[]>(`${this.baseUrl}sexos`)
   }
 
+  public getInsumos() {
+    return this.http.get<any[]>(`${this.baseUrl}insumos`)
+  }
+
+  public getCarguesInsumos(id:number) {
+    return this.http.get<any[]>(`${this.baseUrl}insumos/${id}`)
+  }
+
   public getCategorias() {
     return this.http.get<any[]>(`${this.baseUrl}categorias`)
   }

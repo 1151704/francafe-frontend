@@ -23,6 +23,7 @@ export class MainReportesComponent implements OnInit {
     this.reporteForm = this.fb.group({
       fechaInicial: [fecha, Validators.required],
       fechaFinal: [fecha, Validators.required],
+      tipo: [1, Validators.required]
     });
   }
 
@@ -33,23 +34,40 @@ export class MainReportesComponent implements OnInit {
       onBeforeOpen: () => Swal.showLoading()
     });
 
-    let { fechaInicial, fechaFinal } = this.reporteForm.value;
-
-    this.apiService.reportesService.consolidadoFacturas(fechaInicial, fechaFinal).subscribe(
-      response => {
-        this.apiService.utilService.downloadFile(
-          response,
-          "ReporteContabilidad_" + fechaInicial + "_" + fechaFinal,
-          "pdf"
-        );
-        Swal.close();
-      },
-      error => {
-        console.log(error);
-        this.apiService.notifService.error("Error", error);
-        Swal.close();
-      }
-    );
+    let { fechaInicial, fechaFinal, tipo } = this.reporteForm.value;
+    if (tipo == '1') {
+      this.apiService.reportesService.consolidadoFacturas(fechaInicial, fechaFinal).subscribe(
+        response => {
+          this.apiService.utilService.downloadFile(
+            response,
+            "ReporteContabilidad_" + fechaInicial + "_" + fechaFinal,
+            "pdf"
+          );
+          Swal.close();
+        },
+        error => {
+          console.log(error);
+          this.apiService.notifService.error("Error", error);
+          Swal.close();
+        }
+      );
+    } else {
+      this.apiService.reportesService.consolidadoEgresos(fechaInicial, fechaFinal).subscribe(
+        response => {
+          this.apiService.utilService.downloadFile(
+            response,
+            "ReporteEgresos_" + fechaInicial + "_" + fechaFinal,
+            "pdf"
+          );
+          Swal.close();
+        },
+        error => {
+          console.log(error);
+          this.apiService.notifService.error("Error", error);
+          Swal.close();
+        }
+      );
+    }
 
   }
 

@@ -1,0 +1,51 @@
+<div class="modal" id="modalInsumoRegistrar" tabindex="-1" role="dialog" aria-labelledby="modalInsumoRegistrarLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInsumoRegistrarLabel">Cargar insumos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #modalClose>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label>Fecha de Ingreso</label>
+                        <input type="date" [(ngModel)]="fechaIngreso" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="alert alert-info" role="alert">
+                            <h4 class="alert-heading">Detalle de implementación</h4>
+                            <p>El la columna Código, debe ingresar el código del insumo ya registrado, caso contrario dejar en blanco si es un nuevo insumo</p>
+                            <hr>
+                            <p><a class="btn btn-info" href="assets/plantilla_cargue_insumos.xlsx" target="_blank"><i class="fas fa-file-excel"></i> Plantilla</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <div *ngIf="currentFileUpload" class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                                {{progress.percentage}}%</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="handleFileInput($event)">
+                            <label class="custom-file-label" for="customFileLang">{{nameFile?nameFile: 'Seleccione un archivo excel'}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" (click)="onSubmit()">Cargar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -2,12 +2,21 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Generación de reporte de Contabilidad</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Generación de reportes</h6>
         </div>
         <div class="card-body">
             <form [formGroup]="reporteForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select formControlName="tipo" class="form-control">
+                                    <option value="1" >Ventas</option>
+                                    <option value="2" >Egresos</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Fecha inicial</label>

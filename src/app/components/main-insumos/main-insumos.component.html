@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="card mb-3 ">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Insumos
+        </div>
+        <div class="card-body">
+
+            <app-modal-insumos-registrar (updateInsumos)="updateInsumos($event)" #modalInsumoRegistrar></app-modal-insumos-registrar>
+            <app-modal-cargues-insumos #modalInsumoCargues></app-modal-cargues-insumos>
+
+            <button type="button" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#modalInsumoRegistrar" title="Registrar">
+                <i class="fa fa-arrow-up"></i> Cargar Insumos
+            </button>
+
+            <button type="button" class="btn btn-success btn-sm ml-1" title="Exportar Insumos" (click)="generarInsumos()">
+                <i class="fa fa-file-excel"></i> Exportar Insumos
+            </button>
+
+            <div class="table-responsive">
+                <table class=" mt-2 table table-striped table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Fecha de registro</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="productos.length == 0">
+                            <td colspan="9" align="center">No hay registros</td>
+                        </tr>
+                        <tr *ngFor="let usuario of productos; let i = index">
+                            <td>{{usuario.id}}</td>
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.descripcion}}</td>
+                            <td>{{usuario.fechaRegistro}}</td>
+                            <td>
+                                <button class="btn btn-info btn-sm m-1" data-toggle="modal" data-target="#modalInsumoCargues" (click)="carguesInsumos(usuario)">Cargues</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

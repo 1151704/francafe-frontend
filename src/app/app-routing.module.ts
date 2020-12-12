@@ -1,3 +1,4 @@
+import { MainInsumosComponent } from './components/main-insumos/main-insumos.component';
 import { MainReportesComponent } from './components/main-reportes/main-reportes.component';
 import { MainProductosComponent } from './components/main-productos/main-productos.component';
 import { MainPedidoComponent } from './components/main-pedido/main-pedido.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'perfil', component: MainPerfilComponent },
       { path: 'pedido', component: MainPedidoComponent },
       { path: 'reportes', component:  MainReportesComponent},
+      { path: 'insumos', component:  MainInsumosComponent},
     ]
   }
 ];
